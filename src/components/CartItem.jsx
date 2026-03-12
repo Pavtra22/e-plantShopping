@@ -39,13 +39,16 @@ function CartItem() {
             +
           </button>
 
-          <button onClick={() => dispatch(decreaseQty(item.id))}>
+          <button onClick={() => dispatch(decreaseQty({ id: item.id, amount: -1 }))}>
             -
           </button>
 
-          <button onClick={() => dispatch(removeItem(item.id))}>
-            Delete
-          </button>
+          <button
+className="cart-item-delete"
+onClick={() => dispatch(removeItem(item.id))}
+>
+Delete
+</button>
 
         </div>
 

@@ -1,26 +1,29 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-
+import { useState } from "react";
 import ProductList from "./components/ProductList";
-import CartItem from "./components/CartItem";
-import AboutUs from "./components/AboutUs";
 
 function App() {
+
+  const [showProductList, setShowProductList] = useState(false);
+
+  const handleGetStartedClick = () => {
+    setShowProductList(true);
+  };
+
   return (
-    <BrowserRouter>
+
+    <div>
 
       <h1>Paradise Nursery</h1>
 
-      <Link to="/plants">
-        <button>Get Started</button>
-      </Link>
+      {!showProductList && (
+        <button onClick={handleGetStartedClick}>
+          Get Started
+        </button>
+      )}
 
-      <Routes>
-        <Route path="/" element={<AboutUs />} />
-        <Route path="/plants" element={<ProductList />} />
-        <Route path="/cart" element={<CartItem />} />
-      </Routes>
+      {showProductList && <ProductList />}
 
-    </BrowserRouter>
+    </div>
   );
 }
 
